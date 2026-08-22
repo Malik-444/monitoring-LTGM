@@ -1,25 +1,25 @@
+# Use Python 3.11
 FROM python:3.11-slim
 
+# Set working directory
 WORKDIR /app
 
-# Update Debian packages with the latest security fixes
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && rm -rf /var/lib/apt/lists/*
-
-# Update Python packaging tools
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel
-
-# Copy application dependencies
+# Copy requirements first
 COPY requirements.txt .
 
 # Install application dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy Flask application
+# Upgrade packages with known security fixes
+RUN pip install --no-cache-dir --upgrade \
+    setuptools>=78.1.1 \
+    msgpack>=1.2.1
+
+# Copy application
 COPY app.py .
 
+# Document application port
 EXPOSE 5000
 
-# Start the Flask application
+# Start Flask application
 CMD ["python", "app.py"]
