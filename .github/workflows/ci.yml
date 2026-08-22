@@ -48,3 +48,16 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest
+
+                # Run the automated tests
+      # If a test fails, this step fails and the workflow stops
+      - name: Run tests
+        run: |
+          python -m pytest
+
+      # Build the Docker image
+      # This verifies that our Dockerfile can successfully
+      # package the Flask application
+      - name: Build Docker image
+        run: |
+          docker build -t flask-app .
