@@ -62,9 +62,10 @@ jobs:
         run: |
           docker build -t flask-app .
                 # Scan the Docker image for known vulnerabilities
-      # This helps identify vulnerable OS packages and dependencies
+           # Scan the Docker image for known vulnerabilities
+      # This checks the image for HIGH and CRITICAL vulnerabilities
       - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@master
         with:
           image-ref: flask-app:latest
           format: table
