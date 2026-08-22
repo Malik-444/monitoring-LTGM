@@ -1,0 +1,50 @@
+# Name of the GitHub Actions workflow
+name: Flask CI
+
+# Defines when the workflow should run
+on:
+
+  # Run whenever code is pushed to the repository
+  push:
+
+  # Run whenever a Pull Request is created or updated
+  pull_request:
+
+# Defines the work GitHub Actions will perform
+jobs:
+
+  # Name of our job
+  test:
+
+    # Use a GitHub-hosted Ubuntu virtual machine
+    runs-on: ubuntu-latest
+
+    # Individual tasks the runner will perform
+    steps:
+
+      # Download our repository onto the GitHub Actions runner
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install and configure Python on the GitHub Actions runner
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+
+          # Use Python 3.11, matching the local development environment
+          python-version: "3.11"
+
+      # Install the Python packages needed by the application and tests
+      - name: Install dependencies
+        run: |
+          # Update pip
+          python -m pip install --upgrade pip
+
+          # Install application and development/test dependencies
+          pip install -r requirements-dev.txt
+
+      # Run the automated tests
+      # If a test fails, this step fails and the workflow stops
+      - name: Run tests
+        run: |
+          python -m pytest
