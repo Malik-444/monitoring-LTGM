@@ -304,24 +304,6 @@ The workflow is responsible for:
 
 This provides a repeatable process for validating changes before deployment.
 
-## Key Learning Outcomes
-
-This project provided hands-on experience with:
-
-- Containerizing Python applications with Docker
-- Building Docker images
-- Using Docker Compose
-- Writing automated tests with Pytest
-- Creating GitHub Actions workflows
-- Implementing CI automation
-- Performing container vulnerability scanning
-- Investigating CVEs
-- Troubleshooting vulnerable dependencies
-- Updating vulnerable packages
-- Rebuilding Docker images
-- Verifying security remediation
-- Working with Git and GitHub
-- Troubleshooting Python dependencies and imports
 
 ## Future Improvements
 
@@ -338,24 +320,4 @@ Potential future improvements include:
 
 ## Summary
 
-This project demonstrates a CI workflow for a containerized Flask application using Docker, GitHub Actions, Pytest, and Trivy.
 
-The pipeline automatically:
-
-    Code
-      |
-      v
-    Test
-      |
-      v
-    Build
-      |
-      v
-    Security Scan
-      |
-      v
-    PASS / FAIL
-
-The project also demonstrates practical security troubleshooting by identifying vulnerabilities, investigating their source, updating affected dependencies, rebuilding the Docker image, and verifying the remediation with a subsequent Trivy scan.
-
-The project intentionally keeps the application architecture simple so the focus remains on CI automation, containerization, testing, and security.
